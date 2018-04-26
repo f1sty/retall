@@ -6,9 +6,12 @@ defmodule Github do
   end
 
   def dowload_all(username) do
-    username
+    tasks = username
     |> repos()
-    |> Enum.map(&(Task.start(__MODULE__, :download, [&1])))
+    |> Enum.map(&(Task.async(__MODULE__, :download, [&1])))
+
+    tasks
+    |> Enum.map(&Task.await/1)
   end
 
   def download(url) do
