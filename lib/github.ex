@@ -2,6 +2,11 @@ require Logger
 defmodule Github do
 
   def main(args) do
+    with dest_dir <- List.last(args) do
+      File.mkdir dest_dir
+      File.cd dest_dir
+    end
+
     args |> List.first |> dowload_all
   end
 
