@@ -30,6 +30,6 @@ defmodule RetreiveAll.MixProject do
   end
 
   defp escript do
-    [main_module: Github]
+    [main_module: RetreiveAll]
   end
 end
