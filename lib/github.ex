@@ -1,5 +1,5 @@
-require Logger
 defmodule Github do
+require Logger
 
   def dowload_all(username) do
     tasks = username
@@ -7,7 +7,7 @@ defmodule Github do
     |> Enum.map(&(Task.async(__MODULE__, :download, [&1])))
 
     tasks
-    |> Enum.map(&Task.await/1)
+    |> Enum.each(&Task.await/1)
   end
 
   def download(url) do
